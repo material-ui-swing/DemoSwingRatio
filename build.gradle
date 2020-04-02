@@ -1,0 +1,37 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+    flatDir {
+        dirs localDir
+    }
+}
+
+dependencies {
+
+    //implementation name: 'material-ui-swing-1.1.1_0.2'
+    implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
+
+    //Slf4j configuration
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    // https://mvnrepository.com/artifact/com.google.inject/guice
+    implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
+
+    // https://mvnrepository.com/artifact/org.swinglabs/swingx
+    implementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //Mockito for create a mock object
+    implementation 'org.mockito:mockito-core:2.28.2'
+
+    //JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
