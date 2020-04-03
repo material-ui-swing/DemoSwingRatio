@@ -26,4 +26,8 @@ public class Constant {
 
     public static final String TITLE_DIALOG_DEV_INFO = "TITLE_DIALOG_DEV_INFO";
     public static final String ACTION_OPEN_LINK = "ACTION_OPEN_LINK";
+    public static final String ACTION_UPDATE_CONTENT_PANE = "ACTION_UPDATE_CONTENT_PANE";
+
+    //Constant model
+    public static final String RATIO_SELECTED = "RATIO_SELECTED";
 }

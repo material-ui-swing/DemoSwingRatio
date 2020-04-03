@@ -1,27 +1,41 @@
 package io.vincentpalazzo.ratio.view;
 
 import io.vincentpalazzo.ratio.App;
+import io.vincentpalazzo.ratio.control.MediatorActions;
+import io.vincentpalazzo.ratio.model.ModelMediator;
+import io.vincentpalazzo.ratio.model.RatioValue;
 import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
+@Singleton
 public class PanelSetting extends JPanel implements IPanelSetting {
 
-    private static final int MAX_WITH = 150;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PanelSetting.class);
 
     private IAppResourceManager resourceManager = (IAppResourceManager) App.getInstance().getInstanceObject(AppResourceManager.class);
     private GroupLayout layout;
-    private JComboBox<String> ratiosValue;
+    private JComboBox<RatioValue> ratiosValue;
     private JTextField widthComponent;
     private JTextField hightComponent;
     private JButton submitSetting;
     private JLabel description;
 
+    private Observable observable;
+
     public PanelSetting() {
+        observable = new Observable();
         initView();
     }
 
@@ -29,7 +43,6 @@ public class PanelSetting extends JPanel implements IPanelSetting {
     @Override
     public void initView() throws ViewException {
         initComponent();
-
         super.setVisible(true);
     }
 
@@ -85,13 +98,37 @@ public class PanelSetting extends JPanel implements IPanelSetting {
 
     }
 
-    private void initComboBox(JComboBox<String> ratiosValue) {
-        ratiosValue.addItem("16:9");
-        ratiosValue.addItem("16:10");
+    private void initComboBox(JComboBox<RatioValue> ratiosValue) {
+        ratiosValue.addItem(RatioValue.FOR_NINE);
+        ratiosValue.addItem(RatioValue.ONE_ONE);
+        ratiosValue.addItem(RatioValue.SEXTEEN_NINE);
+        ModelMediator model = (ModelMediator) App.getInstance().getInstanceObject(ModelMediator.class);
+        model.putBean(Constant.RATIO_SELECTED, ratiosValue.getSelectedItem());
+
+        MediatorActions actions = (MediatorActions) App.getInstance().getInstanceObject(MediatorActions.class);
+        ratiosValue.addActionListener(actions.getAction(Constant.ACTION_UPDATE_CONTENT_PANE));
     }
 
     @Override
     public void initActions() throws ViewException {
 
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observable.addObserver(observer);
+    }
+
+    // getter and setter
+    public JComboBox<RatioValue> getRatiosValue() {
+        return ratiosValue;
+    }
+
+    public JTextField getWidthComponent() {
+        return widthComponent;
+    }
+
+    public JTextField getHightComponent() {
+        return hightComponent;
     }
 }

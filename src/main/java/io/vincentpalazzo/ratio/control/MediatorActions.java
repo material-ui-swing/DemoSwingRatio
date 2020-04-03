@@ -3,6 +3,7 @@ package io.vincentpalazzo.ratio.control;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.vincentpalazzo.ratio.control.actions.ActionExitApp;
+import io.vincentpalazzo.ratio.control.actions.ActionUpdateContentPanel;
 import io.vincentpalazzo.ratio.control.actions.ActionViewDeveloper;
 import io.vincentpalazzo.ratio.control.exceptions.AppControlException;
 import io.vincentpalazzo.ratio.util.Constant;
@@ -40,9 +41,16 @@ public class MediatorActions {
         LOGGER.debug("I'm adding the action: " + actionExit.getClass().getSimpleName() + "with key: " + Constant.EXIT_ACTION_KEY);
         actionMap.put(Constant.EXIT_ACTION_KEY, actionExit);
     }
+
     @Inject
     private void setActionExit(ActionViewDeveloper actionViewDeveloper){
         LOGGER.debug("I'm adding the action: " + actionViewDeveloper.getClass().getSimpleName() + "with key: " + Constant.EXIT_ACTION_KEY);
         actionMap.put(Constant.VIEW_DEV_ACTION_KEY, actionViewDeveloper);
+    }
+
+    @Inject
+    private void setActionUpdateContentPane(ActionUpdateContentPanel actionUpdateContentPane){
+        LOGGER.debug("I'm adding the action: " + actionUpdateContentPane.getClass().getSimpleName() + "with key: " + Constant.EXIT_ACTION_KEY);
+        actionMap.put(Constant.ACTION_UPDATE_CONTENT_PANE, actionUpdateContentPane);
     }
 }
