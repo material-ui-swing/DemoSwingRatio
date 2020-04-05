@@ -2,7 +2,7 @@
 
 This is a demo that try to implement with Java Swing the ratio 16:9 and 16:10, like powerpoint use case.
 
-You can download the jar [here](https://gitlab.com/vincenzopalazzo/demoswingratio/-/tree/master/bin)
+You can download the jar [here](https://gitlab.com/palazzovincenzo/demoswingratio/-/tree/master/bin)
 
 ## Results
 
