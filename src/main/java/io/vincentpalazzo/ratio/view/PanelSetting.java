@@ -8,6 +8,7 @@ import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
+import mdlaf.components.button.MaterialButtonUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +35,8 @@ public class PanelSetting extends JPanel implements IPanelSetting {
 
     private Observable observable;
 
+    private MediatorActions actions = (MediatorActions) App.getInstance().getInstanceObject(MediatorActions.class);
+
     public PanelSetting() {
         observable = new Observable();
         initView();
@@ -43,6 +46,7 @@ public class PanelSetting extends JPanel implements IPanelSetting {
     @Override
     public void initView() throws ViewException {
         initComponent();
+        initActions();
         super.setVisible(true);
     }
 
@@ -56,6 +60,7 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         hightComponent = new JTextField();
 
         submitSetting = new JButton("attending action");
+        submitSetting.setUI(new IconButtonUI());
 
         layout = new GroupLayout(this);
         super.setLayout(layout);
@@ -104,14 +109,12 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         ratiosValue.addItem(RatioValue.SEXTEEN_NINE);
         ModelMediator model = (ModelMediator) App.getInstance().getInstanceObject(ModelMediator.class);
         model.putBean(Constant.RATIO_SELECTED, ratiosValue.getSelectedItem());
-
-        MediatorActions actions = (MediatorActions) App.getInstance().getInstanceObject(MediatorActions.class);
-        ratiosValue.addActionListener(actions.getAction(Constant.ACTION_UPDATE_CONTENT_PANE));
     }
 
     @Override
     public void initActions() throws ViewException {
-
+        ratiosValue.addActionListener(actions.getAction(Constant.ACTION_UPDATE_CONTENT_PANE));
+        submitSetting.setAction(actions.getAction(Constant.ACTION_GENERATE_IMAGE));
     }
 
     @Override
@@ -130,5 +133,14 @@ public class PanelSetting extends JPanel implements IPanelSetting {
 
     public JTextField getHightComponent() {
         return hightComponent;
+    }
+
+    public class IconButtonUI extends MaterialButtonUI{
+
+        @Override
+        public void installUI(JComponent c) {
+            super.installUI(c);
+            buttonBorderToAll = true;
+        }
     }
 }

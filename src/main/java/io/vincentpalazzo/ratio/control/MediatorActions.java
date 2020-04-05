@@ -2,9 +2,7 @@ package io.vincentpalazzo.ratio.control;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.vincentpalazzo.ratio.control.actions.ActionExitApp;
-import io.vincentpalazzo.ratio.control.actions.ActionUpdateContentPanel;
-import io.vincentpalazzo.ratio.control.actions.ActionViewDeveloper;
+import io.vincentpalazzo.ratio.control.actions.*;
 import io.vincentpalazzo.ratio.control.exceptions.AppControlException;
 import io.vincentpalazzo.ratio.util.Constant;
 import org.slf4j.Logger;
@@ -44,13 +42,25 @@ public class MediatorActions {
 
     @Inject
     private void setActionExit(ActionViewDeveloper actionViewDeveloper){
-        LOGGER.debug("I'm adding the action: " + actionViewDeveloper.getClass().getSimpleName() + "with key: " + Constant.EXIT_ACTION_KEY);
+        LOGGER.debug("I'm adding the action: " + actionViewDeveloper.getClass().getSimpleName() + "with key: " + Constant.VIEW_DEV_ACTION_KEY);
         actionMap.put(Constant.VIEW_DEV_ACTION_KEY, actionViewDeveloper);
     }
 
     @Inject
     private void setActionUpdateContentPane(ActionUpdateContentPanel actionUpdateContentPane){
-        LOGGER.debug("I'm adding the action: " + actionUpdateContentPane.getClass().getSimpleName() + "with key: " + Constant.EXIT_ACTION_KEY);
+        LOGGER.debug("I'm adding the action: " + actionUpdateContentPane.getClass().getSimpleName() + "with key: " + Constant.ACTION_UPDATE_CONTENT_PANE);
         actionMap.put(Constant.ACTION_UPDATE_CONTENT_PANE, actionUpdateContentPane);
+    }
+
+    @Inject
+    private void setActionAddImageBackground(ActionAddImageBackground actionAddImageBackground){
+        LOGGER.debug("I'm adding the action: " + actionAddImageBackground.getClass().getSimpleName() + "with key: " + Constant.ACTION_ADD_IMAGE);
+        actionMap.put(Constant.ACTION_ADD_IMAGE, actionAddImageBackground);
+    }
+
+    @Inject
+    private void setActionGenerateImageToPresentation(ActionGenerateImageToPresentation generateImageToPresentation){
+        LOGGER.debug("I'm adding the action: " + generateImageToPresentation.getClass().getSimpleName() + "with key: " + Constant.ACTION_GENERATE_IMAGE);
+        actionMap.put(Constant.ACTION_GENERATE_IMAGE, generateImageToPresentation);
     }
 }

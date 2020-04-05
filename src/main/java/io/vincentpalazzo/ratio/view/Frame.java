@@ -89,4 +89,22 @@ public class Frame extends AppTheme implements IFrameApp {
         menuExit.setAction(mediatorActions.getAction(Constant.EXIT_ACTION_KEY));
         menuDev.setAction(mediatorActions.getAction(Constant.VIEW_DEV_ACTION_KEY));
     }
+
+    @Override
+    public void doShowMessage(MessageLevelError levelError, String message) {
+        String title;
+        int typePanel;
+        switch (levelError){
+            case ERROR: title = "ERROR";
+                typePanel = JOptionPane.ERROR_MESSAGE;
+                break;
+            case WARNING: title = "WARNING";
+                typePanel = JOptionPane.WARNING_MESSAGE;
+                break;
+            default: title = "INFO";
+                typePanel = JOptionPane.INFORMATION_MESSAGE;
+                break;
+        }
+        JOptionPane.showInternalInputDialog(this, message, title, typePanel);
+    }
 }

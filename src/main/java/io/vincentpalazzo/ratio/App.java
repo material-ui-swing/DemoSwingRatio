@@ -4,8 +4,8 @@ import com.google.inject.*;
 import com.google.inject.matcher.Matchers;
 import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
-import io.vincentpalazzo.ratio.util.aop.interseptors.HibernateInterceptor;
-import io.vincentpalazzo.ratio.util.aop.annotations.HibernateTransactions;
+import io.vincentpalazzo.ratio.util.aop.annotations.UpdateContentPanelAOP;
+import io.vincentpalazzo.ratio.util.aop.interseptors.UpdateContentPanelInterceptor;
 import io.vincentpalazzo.ratio.view.*;
 
 import javax.swing.*;
@@ -57,8 +57,12 @@ public class App {
 
             bind(IPanelSetting.class).to(PanelSetting.class);
 
+            bind(IPresentationPanel.class).to(PanelPresentation.class);
+
+            bind(IAppResourceManager.class).to(AppResourceManager.class);
+
             //AOP
-            bindInterceptor(Matchers.any(), Matchers.annotatedWith(HibernateTransactions.class), new HibernateInterceptor());
+            bindInterceptor(Matchers.any(), Matchers.annotatedWith(UpdateContentPanelAOP.class), new UpdateContentPanelInterceptor());
         }
     }
 

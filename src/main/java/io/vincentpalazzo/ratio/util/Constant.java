@@ -19,14 +19,19 @@ public class Constant {
     public static final String GITHUB_DEV_INFO = "GITHUB_DEV_INFO";
     public static final String TITLE_TASK_PANE_DESCRIPTION = "TITLE_TASK_PANE_DESCRIPTION";
     public static final String DESCRIPTION_SETTING_PANEL = "DESCRIPTION_SETTING_PANEL";
+    public static final String FILECHOOSER_LOAD_IMAGE_TITLE = "FILECHOOSER_LOAD_IMAGE_TITLE";
+    public static final String ERROR_LOAD_IMAGE = "ERROR_LOAD_IMAGE";
+    public static final String NAME_ACTION_GENERATE_IMAGE = "NAME_ACTION_GENERATE_IMAGE";
 
     //Constant for action
     public static final String VIEW_DEV_ACTION_KEY = "VIEW_DEV_ACTION_KEY";
     public static final String EXIT_ACTION_KEY = "EXIT_ACTION_KEY";
+    public static final String ACTION_GENERATE_IMAGE = "ACTION_GENERATE_IMAGE";
 
     public static final String TITLE_DIALOG_DEV_INFO = "TITLE_DIALOG_DEV_INFO";
     public static final String ACTION_OPEN_LINK = "ACTION_OPEN_LINK";
     public static final String ACTION_UPDATE_CONTENT_PANE = "ACTION_UPDATE_CONTENT_PANE";
+    public static final String ACTION_ADD_IMAGE = "ACTION_ADD_IMAGE";
 
     //Constant model
     public static final String RATIO_SELECTED = "RATIO_SELECTED";

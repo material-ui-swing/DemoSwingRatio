@@ -4,6 +4,7 @@ repositories {
     jcenter()
     mavenLocal()
     mavenCentral()
+    //maven { url 'https://jitpack.io' }
     flatDir {
         dirs localDir
     }
@@ -11,8 +12,10 @@ repositories {
 
 dependencies {
 
-    //implementation name: 'material-ui-swing-1.1.1_0.2'
-    implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
+    implementation name: 'material-ui-swing-1.1.1_0.2'
+    //implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
+
+   // implementation 'com.github.vincenzopalazzo:toasts-for-swing:1.5'
 
     //Slf4j configuration
     compile 'ch.qos.logback:logback-classic:1.2.3'

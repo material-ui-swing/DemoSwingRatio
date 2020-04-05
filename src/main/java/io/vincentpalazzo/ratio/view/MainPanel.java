@@ -20,8 +20,8 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainPanel.class);
 
     private IPanelSetting panelSetting;
-    private PanelObserver panelContainer;
-    private JPanel panelContent;
+    private JPanel panelContainer;
+    private PanelPresentation panelContent;
 
     @Override
     public void initView() throws ViewException {
@@ -32,16 +32,17 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     public void initComponent() throws ViewException {
         setDividerLocation(0.3);
         panelSetting = (IPanelSetting) App.getInstance().getInstanceObject(IPanelSetting.class);
-        panelContainer = (PanelObserver) App.getInstance().getInstanceObject(PanelObserver.class);
-        panelSetting.addObserver(panelContainer);
-        panelContent = new JPanel();
+        panelContainer = new JPanel();
+       // panelSetting.addObserver(panelContainer);
+        panelContent = (PanelPresentation) App.getInstance().getInstanceObject(IPresentationPanel.class);
+        ;
 
         this.initStyleComponent();
 
         panelContainer.setLayout(new GridBagLayout());
         panelContainer.add(panelContent, new GridBagConstraints());
 
-        super.setLeftComponent((JPanel)panelSetting);
+        super.setLeftComponent((JPanel) panelSetting);
         super.setRightComponent(new JScrollPane(panelContainer));
     }
 
@@ -52,13 +53,13 @@ public class MainPanel extends JSplitPane implements IMainPanel {
         RatioValue ratio = (RatioValue) model.getBean(Constant.RATIO_SELECTED);
         int dimensionX = 1280;
         int dimensionY = 720;
-        if(ratio != null){
+        if (ratio != null) {
             LOGGER.debug("Dimension selected: " + ratio.toString());
             dimensionX = ratio.getWidth();
             dimensionY = ratio.getHeight();
         }
 
-        if(panelContainer != null){
+        if (panelContainer != null) {
             panelContent.setPreferredSize(new Dimension(dimensionX, dimensionY));
             panelContent.setMaximumSize(new Dimension(dimensionX, dimensionY));
             panelContent.setMinimumSize(new Dimension(dimensionX, dimensionY));
@@ -78,5 +79,11 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     public void repaint() {
         super.repaint();
         initStyleComponent();
+    }
+
+    @Override
+    public void refreshUI() {
+        panelContainer.revalidate();
+        this.repaint();
     }
 }

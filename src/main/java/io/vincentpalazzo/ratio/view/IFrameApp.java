@@ -5,5 +5,5 @@ package io.vincentpalazzo.ratio.view;
  */
 public interface IFrameApp extends IAppViewComponent{
 
-
+    void doShowMessage(MessageLevelError levelError, String message);
 }

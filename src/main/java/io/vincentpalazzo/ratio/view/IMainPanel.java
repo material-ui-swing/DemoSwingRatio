@@ -5,4 +5,6 @@ package io.vincentpalazzo.ratio.view;
  */
 public interface IMainPanel extends IAppViewComponent{
     //TagInterface
+
+    void refreshUI();
 }
