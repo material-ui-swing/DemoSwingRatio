@@ -10,7 +10,6 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

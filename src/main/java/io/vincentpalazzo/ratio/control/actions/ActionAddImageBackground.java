@@ -4,14 +4,12 @@ import com.google.inject.Inject;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
-import io.vincentpalazzo.ratio.util.aop.annotations.UpdateContentPanelAOP;
 import io.vincentpalazzo.ratio.view.*;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -64,7 +62,6 @@ public class ActionAddImageBackground extends AbstractAction {
             } catch (IOException ex) {
                 LOGGER.error(ex.getLocalizedMessage());
                 frame.doShowMessage(MessageLevelError.ERROR, resourceManager.getResourceString(Constant.ERROR_LOAD_IMAGE));
-                return;
             }
         }
     }
