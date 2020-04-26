@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
 
-    implementation name: 'material-ui-swing-1.1.1_0.2'
+    implementation name: 'material-ui-swing-1.1.1_0.5-dev'
     //implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
 
    // implementation 'com.github.vincenzopalazzo:toasts-for-swing:1.5'

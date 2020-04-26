@@ -46,7 +46,7 @@ public class Frame extends AppTheme implements IFrameApp {
 
         setJMenuBar(menuBar);
 
-        this.getContentPane().setPreferredSize(new Dimension(DIMENSION_Y, DIMENSION_X));
+        GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(this.getOwner());
 
         initActions();
 
