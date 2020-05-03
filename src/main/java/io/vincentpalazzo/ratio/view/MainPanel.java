@@ -35,7 +35,6 @@ public class MainPanel extends JSplitPane implements IMainPanel {
         panelContainer = new JPanel();
        // panelSetting.addObserver(panelContainer);
         panelContent = (PanelPresentation) App.getInstance().getInstanceObject(IPresentationPanel.class);
-        ;
 
         this.initStyleComponent();
 

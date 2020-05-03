@@ -2,14 +2,18 @@ package io.vincentpalazzo.ratio.view;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import io.swingsnackbar.SnackBar;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.control.MediatorActions;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -29,6 +33,7 @@ public class Frame extends AppTheme implements IFrameApp {
     //Menu Items
     private JMenuItem menuExit;
     private JMenuItem menuDev;
+    private SnackBar snackBar;
 
     @Inject
     IAppResourceManager appResourceManager;
@@ -55,6 +60,25 @@ public class Frame extends AppTheme implements IFrameApp {
         setLocationRelativeTo(null);
         setVisible(true);
 
+        snackBar = SnackBar.make(this, "Welcome in the DemoRationSwing", SnackBar.LENGTH_LONG)
+                .setActionTextColor("CLOSE", MaterialColors.COSMO_RED, new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) { }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        snackBar.dismiss();
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {}
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {}
+
+                    @Override
+                    public void mouseExited(MouseEvent e) { }
+                }).run();
     }
 
     @Override
