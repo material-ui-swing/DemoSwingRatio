@@ -4,11 +4,8 @@ import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.model.ModelMediator;
 import io.vincentpalazzo.ratio.model.RatioValue;
 import io.vincentpalazzo.ratio.util.Constant;
-import io.vincentpalazzo.ratio.util.aop.annotations.UpdateContentPanelAOP;
 import io.vincentpalazzo.ratio.view.IMainPanel;
 import io.vincentpalazzo.ratio.view.IPanelSetting;
-import io.vincentpalazzo.ratio.view.MainPanel;
-import io.vincentpalazzo.ratio.view.PanelPresentation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +18,7 @@ public class ActionUpdateContentPanel extends AbstractAction implements ActionLi
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionUpdateContentPanel.class);
 
     @Override
-    //@UpdateContentPanelAOP
+    //@UpdateContentPanelAOP Don't work
     public void actionPerformed(ActionEvent e) {
         IPanelSetting panelSetting = (IPanelSetting) App.getInstance().getInstanceObject(IPanelSetting.class);
         ModelMediator model = (ModelMediator) App.getInstance().getInstanceObject(ModelMediator.class);

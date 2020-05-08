@@ -1,7 +1,6 @@
 package io.vincentpalazzo.ratio.control.actions;
 
-import io.vincentpalazzo.ratio.App;
-import io.vincentpalazzo.ratio.util.AppResourceManager;
+import com.google.inject.Inject;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 
@@ -13,15 +12,18 @@ import java.awt.event.ActionEvent;
  */
 public class ActionExitApp extends AbstractAction {
 
-    private IAppResourceManager resourceManager = (IAppResourceManager) App.getInstance().getInstanceObject(AppResourceManager.class);
 
     public ActionExitApp(){
-        putValue(Action.NAME, resourceManager.getResourceString(Constant.MENU_I_EXIT_VALUE));
-        //TODO another value
+        putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("CTRL E"));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.exit(0);
+    }
+
+    @Inject
+    public void setResourceManager(IAppResourceManager resourceManager) {
+        putValue(Action.NAME, resourceManager.getResourceString(Constant.MENU_I_EXIT_VALUE));
     }
 }

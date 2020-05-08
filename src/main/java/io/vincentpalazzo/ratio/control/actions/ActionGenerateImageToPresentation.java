@@ -1,5 +1,6 @@
 package io.vincentpalazzo.ratio.control.actions;
 
+import com.google.inject.Inject;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
@@ -22,19 +23,6 @@ import java.io.IOException;
 public class ActionGenerateImageToPresentation extends AbstractAction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionAddImageBackground.class);
-
-    private IAppResourceManager resourceManager;
-
-    public ActionGenerateImageToPresentation() {
-        this.resourceManager = (IAppResourceManager) App.getInstance().getInstanceObject(IAppResourceManager.class);
-        super.putValue(Action.NAME, resourceManager.getResourceString(Constant.NAME_ACTION_GENERATE_IMAGE));
-        super.putValue(Action.LARGE_ICON_KEY,
-                MaterialImageFactory.getInstance().getImage(
-                        GoogleMaterialDesignIcons.PHOTO_CAMERA,
-                        MaterialColors.COSMO_MEDIUM_GRAY
-                )
-        );
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

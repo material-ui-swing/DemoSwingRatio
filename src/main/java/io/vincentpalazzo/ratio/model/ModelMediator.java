@@ -1,6 +1,6 @@
 package io.vincentpalazzo.ratio.model;
 
-import javax.inject.Singleton;
+import com.google.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 

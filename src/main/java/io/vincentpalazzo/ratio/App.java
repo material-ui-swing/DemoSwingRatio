@@ -2,6 +2,7 @@ package io.vincentpalazzo.ratio;
 
 import com.google.inject.*;
 import com.google.inject.matcher.Matchers;
+import io.vincentpalazzo.ratio.model.ModelMediator;
 import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.util.aop.annotations.UpdateContentPanelAOP;
@@ -25,7 +26,7 @@ public class App {
     private App(){}
 
     private void initGuice(){
-        injector = Guice.createInjector(Stage.DEVELOPMENT, new AppBinder());
+        injector = Guice.createInjector(Stage.PRODUCTION, new AppBinder());
     }
 
     public Object getInstanceObject(Class implementationClass){
@@ -34,9 +35,6 @@ public class App {
 
     private void initApp() {
         initGuice();
-
-        IAppResourceManager appResourceManager = (IAppResourceManager) getInstanceObject(AppResourceManager.class);
-        appResourceManager.initResourceManager();
 
         IFrameApp frameApp = (IFrameApp) getInstanceObject(IFrameApp.class);
 
@@ -51,15 +49,19 @@ public class App {
 
             bind(IFrameApp.class).to(Frame.class).in(Singleton.class);
 
-            bind(IAppResourceManager.class).to(AppResourceManager.class);
+            bind(IAppResourceManager.class).to(AppResourceManager.class).in(Singleton.class);
 
-            bind(IMainPanel.class).to(MainPanel.class);
+            bind(IMainPanel.class).to(MainPanel.class).in(Singleton.class);
 
-            bind(IPanelSetting.class).to(PanelSetting.class);
+            bind(IPanelSetting.class).to(PanelSetting.class).in(Singleton.class);
 
-            bind(IPresentationPanel.class).to(PanelPresentation.class);
+            bind(IPresentationPanel.class).to(PanelPresentation.class).in(Singleton.class);
 
-            bind(IAppResourceManager.class).to(AppResourceManager.class);
+            bind(IAppResourceManager.class).to(AppResourceManager.class).in(Singleton.class);
+
+            bind(ModelMediator.class).in(Singleton.class);
+            //TODO refactoring
+            bind(DialogDeveloperInfo.class).in(Singleton.class);
 
             //AOP
             bindInterceptor(Matchers.any(), Matchers.annotatedWith(UpdateContentPanelAOP.class), new UpdateContentPanelInterceptor());

@@ -1,5 +1,7 @@
 package io.vincentpalazzo.ratio.view;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.control.MediatorActions;
 import io.vincentpalazzo.ratio.model.ModelMediator;
@@ -8,15 +10,14 @@ import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialImageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,7 +26,6 @@ public class PanelSetting extends JPanel implements IPanelSetting {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PanelSetting.class);
 
-    private IAppResourceManager resourceManager = (IAppResourceManager) App.getInstance().getInstanceObject(AppResourceManager.class);
     private GroupLayout layout;
     private JComboBox<RatioValue> ratiosValue;
     private JTextField widthComponent;
@@ -35,10 +35,15 @@ public class PanelSetting extends JPanel implements IPanelSetting {
 
     private Observable observable;
 
-    private MediatorActions actions = (MediatorActions) App.getInstance().getInstanceObject(MediatorActions.class);
+    private MediatorActions actions;
+    private IAppResourceManager resourceManager;
+    private ModelMediator model;
 
-    public PanelSetting() {
-        observable = new Observable();
+    @Inject
+    public PanelSetting(MediatorActions actions, IAppResourceManager resourceManager, ModelMediator model) {
+        this.actions = actions;
+        this.resourceManager = resourceManager;
+        this.model = model;
         initView();
     }
 
@@ -59,8 +64,8 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         widthComponent = new JTextField();
         hightComponent = new JTextField();
 
-        submitSetting = new JButton("attending action");
-        submitSetting.setUI(new IconButtonUI());
+        submitSetting = new MaterialIconButton();
+        submitSetting.setText(resourceManager.getResourceString(Constant.NAME_ACTION_GENERATE_IMAGE));
 
         layout = new GroupLayout(this);
         super.setLayout(layout);
@@ -107,14 +112,13 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         ratiosValue.addItem(RatioValue.FOR_NINE);
         ratiosValue.addItem(RatioValue.ONE_ONE);
         ratiosValue.addItem(RatioValue.SEXTEEN_NINE);
-        ModelMediator model = (ModelMediator) App.getInstance().getInstanceObject(ModelMediator.class);
         model.putBean(Constant.RATIO_SELECTED, ratiosValue.getSelectedItem());
     }
 
     @Override
     public void initActions() throws ViewException {
         ratiosValue.addActionListener(actions.getAction(Constant.ACTION_UPDATE_CONTENT_PANE));
-        submitSetting.setAction(actions.getAction(Constant.ACTION_GENERATE_IMAGE));
+        submitSetting.addActionListener(actions.getAction(Constant.ACTION_GENERATE_IMAGE));
     }
 
     @Override
@@ -135,12 +139,33 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         return hightComponent;
     }
 
-    public class IconButtonUI extends MaterialButtonUI{
+
+    public class MaterialIconButton extends JButton{
+
+        public MaterialIconButton() {
+            setUI(new IconButtonUI());
+            setIcon(MaterialImageFactory.getInstance().getImage(
+                    GoogleMaterialDesignIcons.PHOTO_CAMERA,
+                    getForeground()
+            ));
+        }
 
         @Override
-        public void installUI(JComponent c) {
-            super.installUI(c);
-            buttonBorderToAll = true;
+        public void updateUI() {
+            setUI(new IconButtonUI());
+            setIcon(MaterialImageFactory.getInstance().getImage(
+                    GoogleMaterialDesignIcons.PHOTO_CAMERA,
+                    getForeground()
+            ));
+        }
+
+        public class IconButtonUI extends MaterialButtonUI{
+
+            @Override
+            public void installUI(JComponent c) {
+                super.installUI(c);
+                buttonBorderToAll = true;
+            }
         }
     }
 }

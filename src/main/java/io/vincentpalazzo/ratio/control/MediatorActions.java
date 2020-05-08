@@ -63,4 +63,10 @@ public class MediatorActions {
         LOGGER.debug("I'm adding the action: " + generateImageToPresentation.getClass().getSimpleName() + "with key: " + Constant.ACTION_GENERATE_IMAGE);
         actionMap.put(Constant.ACTION_GENERATE_IMAGE, generateImageToPresentation);
     }
+
+    @Inject
+    private void setActionExit(ActionChangeMaterialTheme actionChangeMaterialTheme){
+        LOGGER.debug("I'm adding the action: " + actionChangeMaterialTheme.getClass().getSimpleName() + "with key: " + Constant.ACTION_CHANGE_THEME);
+        actionMap.put(Constant.ACTION_CHANGE_THEME, actionChangeMaterialTheme);
+    }
 }

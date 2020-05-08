@@ -29,16 +29,14 @@ public class DialogDeveloperInfo extends JDialog implements IAppViewComponent {
     private JLabel profileGithubLink;
     private JXTaskPane taskPaneDescription;
     private GroupLayout layout;
-
-
-    @Inject
     private IAppResourceManager resourceManager;
-    @Inject
     private MediatorActions mediator;
 
     @Inject
-    public DialogDeveloperInfo(Frame owner) {
+    public DialogDeveloperInfo(JFrame owner, MediatorActions mediator, IAppResourceManager resourceManager) {
         super(owner, true);
+        this.mediator = mediator;
+        this.resourceManager = resourceManager;
     }
 
     @Override

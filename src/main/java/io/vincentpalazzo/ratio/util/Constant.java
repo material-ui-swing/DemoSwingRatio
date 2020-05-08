@@ -22,6 +22,15 @@ public class Constant {
     public static final String FILECHOOSER_LOAD_IMAGE_TITLE = "FILECHOOSER_LOAD_IMAGE_TITLE";
     public static final String ERROR_LOAD_IMAGE = "ERROR_LOAD_IMAGE";
     public static final String NAME_ACTION_GENERATE_IMAGE = "NAME_ACTION_GENERATE_IMAGE";
+    public static final String SNACKBAR_IMAGE_ADDED = "SNACKBAR_IMAGE_ADDED";
+    public static final String SNACKBAR_TEXT_CLOSE = "SNACKBAR_TEXT_CLOSE";
+    public static final String TEXT_ADD_IMAGE = "TEXT_ADD_IMAGE";
+    public static final String TEXT_CHANGE_LANDF = "TEXT_CHANGE_LANDF";
+    public static final String TEXT_MENU_ITEM_LANDF = "TEXT_MENU_ITEM_LANDF";
+    public static final String TEXT_MENU_ITEM_MATERIAL = "TEXT_MENU_ITEM_MATERIAL";
+    public static final String TEXT_MENU_THEME = "TEXT_MENU_THEME";
+
+
 
     //Constant for action
     public static final String VIEW_DEV_ACTION_KEY = "VIEW_DEV_ACTION_KEY";
@@ -32,7 +41,9 @@ public class Constant {
     public static final String ACTION_OPEN_LINK = "ACTION_OPEN_LINK";
     public static final String ACTION_UPDATE_CONTENT_PANE = "ACTION_UPDATE_CONTENT_PANE";
     public static final String ACTION_ADD_IMAGE = "ACTION_ADD_IMAGE";
+    public static final String ACTION_CHANGE_THEME = "ACTION_CHANGE_THEME";
 
     //Constant model
     public static final String RATIO_SELECTED = "RATIO_SELECTED";
+    public static final String THEME_CHOOSE = "THEME_CHOOSE";
 }

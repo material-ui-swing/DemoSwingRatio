@@ -1,5 +1,7 @@
 package io.vincentpalazzo.ratio.view;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.control.MediatorActions;
 import io.vincentpalazzo.ratio.util.Constant;
@@ -9,7 +11,6 @@ import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
@@ -23,10 +24,12 @@ public class PanelPresentation extends JPanel implements IPresentationPanel, Obs
     private JLabel backgroundLabel;
     private JButton addBackground;
 
-    private MediatorActions actions = (MediatorActions) App.getInstance().getInstanceObject(MediatorActions.class);
+    private MediatorActions actions;
 
-    public PanelPresentation() {
+    @Inject
+    public PanelPresentation(MediatorActions actions) {
         LOGGER.debug("New object observable");
+        this.actions = actions;
         initView();
     }
 
@@ -41,10 +44,7 @@ public class PanelPresentation extends JPanel implements IPresentationPanel, Obs
     @Override
     public void initComponent() throws ViewException {
         backgroundLabel = new JLabel();
-        addBackground = new JButton();
-        addBackground.setUI(new AddImageButtonUI());
-        addBackground.setBackground(MaterialColors.COSMO_STRONG_GRAY);
-        addBackground.setForeground(MaterialColors.COSMO_BLACK);
+        addBackground = new AddImageButton();
         addBackground.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         super.setLayout(new GridBagLayout());
@@ -74,22 +74,41 @@ public class PanelPresentation extends JPanel implements IPresentationPanel, Obs
         return addBackground;
     }
 
-    public class AddImageButtonUI extends MaterialButtonUI{
 
-        @Override
-        public void installUI(JComponent c) {
-            mouseHoverEnabled = false;
-            super.installUI(c);
+    public class AddImageButton extends JButton {
+
+        public AddImageButton() {
+            setUI(new AddImageButtonUI());
         }
 
         @Override
-        protected void paintBorderButton(Graphics graphics, JComponent b) {
-
+        public void updateUI() {
+            setUI(new AddImageButtonUI());
         }
 
-        @Override
-        protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+        public class AddImageButtonUI extends MaterialButtonUI {
 
+            @Override
+            public void installUI(JComponent c) {
+                mouseHoverEnabled = false;
+                super.installUI(c);
+                super.background = MaterialColors.COSMO_STRONG_GRAY;
+                super.button.setBackground(super.background);
+                super.foreground = MaterialColors.COSMO_BLACK;
+                super.button.setForeground(super.foreground);
+            }
+
+            @Override
+            protected void paintBorderButton(Graphics graphics, JComponent b) {
+
+            }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
+            }
         }
+
     }
+
 }

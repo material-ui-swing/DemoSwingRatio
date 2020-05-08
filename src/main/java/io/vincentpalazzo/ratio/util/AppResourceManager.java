@@ -1,11 +1,11 @@
 package io.vincentpalazzo.ratio.util;
 
+import com.google.inject.Singleton;
 import io.vincentpalazzo.ratio.util.exceptions.UtilException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -22,6 +22,10 @@ public class AppResourceManager implements IAppResourceManager{
     private static final Logger LOGGER = LoggerFactory.getLogger(AppResourceManager.class);
 
     private ResourceBundle resourceBundle;
+
+    public AppResourceManager() {
+        this.initResourceManager();
+    }
 
     @Override
     public void initResourceManager() {

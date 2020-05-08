@@ -1,8 +1,7 @@
 package io.vincentpalazzo.ratio.util.aop.interseptors;
 
 import io.vincentpalazzo.ratio.App;
-import io.vincentpalazzo.ratio.view.IFrameApp;
-import io.vincentpalazzo.ratio.view.MainPanel;
+import io.vincentpalazzo.ratio.view.IMainPanel;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
@@ -15,13 +14,14 @@ public class UpdateContentPanelInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
-
         try {
             // code run before execution
-            LOGGER.info("Was called the method: " + invocation.getMethod().getName());
-            MainPanel frameApp = (MainPanel) App.getInstance().getInstanceObject(MainPanel.class);
-            frameApp.refreshUI();
-        } finally {
+            LOGGER.error("Was called the method: " + invocation.getMethod().getName());
+            IMainPanel mainPanel = (IMainPanel) App.getInstance().getInstanceObject(IMainPanel.class);;
+            mainPanel.refreshUI();
+        } catch (Throwable throwable){
+            throwable.printStackTrace();
+        }finally {
             // code run after execution
             return invocation.proceed();
 

@@ -1,6 +1,7 @@
 package io.vincentpalazzo.ratio.view;
 
-import io.vincentpalazzo.ratio.App;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import io.vincentpalazzo.ratio.model.ModelMediator;
 import io.vincentpalazzo.ratio.model.RatioValue;
 import io.vincentpalazzo.ratio.util.Constant;
@@ -10,7 +11,6 @@ import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +22,15 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     private IPanelSetting panelSetting;
     private JPanel panelContainer;
     private PanelPresentation panelContent;
+    private ModelMediator model;
+
+    @Inject
+    public MainPanel(IPanelSetting panelSetting, PanelPresentation panelContent, ModelMediator model) {
+        this.panelSetting = panelSetting;
+        this.panelContent = panelContent;
+        this.model = model;
+        initView();
+    }
 
     @Override
     public void initView() throws ViewException {
@@ -31,10 +40,8 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     @Override
     public void initComponent() throws ViewException {
         setDividerLocation(0.3);
-        panelSetting = (IPanelSetting) App.getInstance().getInstanceObject(IPanelSetting.class);
         panelContainer = new JPanel();
-       // panelSetting.addObserver(panelContainer);
-        panelContent = (PanelPresentation) App.getInstance().getInstanceObject(IPresentationPanel.class);
+        //panelSetting.addObserver(panelContainer);
 
         this.initStyleComponent();
 
@@ -46,10 +53,12 @@ public class MainPanel extends JSplitPane implements IMainPanel {
     }
 
     private void initStyleComponent() {
-
-        ModelMediator model = (ModelMediator) App.getInstance().getInstanceObject(ModelMediator.class);
-
-        RatioValue ratio = (RatioValue) model.getBean(Constant.RATIO_SELECTED);
+        RatioValue ratio;
+        if(model == null){
+          ratio = RatioValue.ONE_ONE;
+        }else{
+            ratio = (RatioValue) model.getBean(Constant.RATIO_SELECTED);
+        }
         int dimensionX = 1280;
         int dimensionY = 720;
         if (ratio != null) {
@@ -67,7 +76,6 @@ public class MainPanel extends JSplitPane implements IMainPanel {
             panelContent.setBorder(MaterialBorders.LIGHT_SHADOW_BORDER);
         }
     }
-
 
     @Override
     public void initActions() throws ViewException {
