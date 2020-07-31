@@ -69,4 +69,10 @@ public class MediatorActions {
         LOGGER.debug("I'm adding the action: " + actionChangeMaterialTheme.getClass().getSimpleName() + "with key: " + Constant.ACTION_CHANGE_THEME);
         actionMap.put(Constant.ACTION_CHANGE_THEME, actionChangeMaterialTheme);
     }
+
+    @Inject
+    private void setActionChangeLookAndFeel(ActionChangeLookAndFeel actionChangeLookAndFeel){
+        LOGGER.debug("I'm adding the action: " + actionChangeLookAndFeel.getClass().getSimpleName() + "with key: " + Constant.ACTION_CHANGE_LAF);
+        actionMap.put(Constant.ACTION_CHANGE_LAF, actionChangeLookAndFeel);
+    }
 }

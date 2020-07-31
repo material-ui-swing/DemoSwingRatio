@@ -1,7 +1,6 @@
 package io.vincentpalazzo.ratio.control.actions;
 
 import com.google.inject.Inject;
-import io.swingsnackbar.SnackBar;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
@@ -14,7 +13,6 @@ import mdlaf.utils.MaterialImageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

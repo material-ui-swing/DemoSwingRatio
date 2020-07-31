@@ -11,8 +11,8 @@ public class Constant {
     //RESOURCES VALUE
     public static final String MENU_FILE_VALUE = "MENU_FILE";
     public static final String MENU_INFO_VALUE = "MENU_INFO";
-    public static final String MENU_I_EXIT_VALUE = "MANU_I_EXIT";
-    public static final String MENU_I_DEV_VALUE = "MANU_I_DEV";
+    public static final String MENU_I_EXIT_VALUE = "MENU_I_EXIT";
+    public static final String MENU_I_DEV_VALUE = "MENU_I_DEV";
     public static final String NAME_DEV_VALUE = "NAME_DEV_VALUE";
     public static final String ICON_DEV_PATH = "ICON_DEV_PATH";
     public static final String SITE_DEV_INFO = "SITE_DEV_INFO";
@@ -30,8 +30,6 @@ public class Constant {
     public static final String TEXT_MENU_ITEM_MATERIAL = "TEXT_MENU_ITEM_MATERIAL";
     public static final String TEXT_MENU_THEME = "TEXT_MENU_THEME";
 
-
-
     //Constant for action
     public static final String VIEW_DEV_ACTION_KEY = "VIEW_DEV_ACTION_KEY";
     public static final String EXIT_ACTION_KEY = "EXIT_ACTION_KEY";
@@ -42,8 +40,10 @@ public class Constant {
     public static final String ACTION_UPDATE_CONTENT_PANE = "ACTION_UPDATE_CONTENT_PANE";
     public static final String ACTION_ADD_IMAGE = "ACTION_ADD_IMAGE";
     public static final String ACTION_CHANGE_THEME = "ACTION_CHANGE_THEME";
+    public static final String ACTION_CHANGE_LAF = "ACTION_CHANGE_LAF";
 
     //Constant model
     public static final String RATIO_SELECTED = "RATIO_SELECTED";
     public static final String THEME_CHOOSE = "THEME_CHOOSE";
+    public static final String TEXT_MENU_ITEM_METAL = "TEXT_MENU_ITEM_METAL";
 }

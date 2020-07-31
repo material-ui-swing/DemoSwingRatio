@@ -2,15 +2,13 @@ package io.vincentpalazzo.ratio.view;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.swingsnackbar.SnackBar;
-import io.swingsnackbar.action.AbstractSnackBarAction;
+import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
 import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.control.MediatorActions;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.util.SnackBarBuilder;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
@@ -18,10 +16,13 @@ import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
-import mdlaf.utils.MaterialImageFactory;
+import org.material.component.swingsnackbar.SnackBar;
+import org.material.component.swingsnackbar.action.AbstractSnackBarAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicLookAndFeel;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -32,6 +33,8 @@ import java.net.URI;
  */
 @Singleton
 public class Frame extends AppTheme implements IFrameApp {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Frame.class);
 
     private JFrame frame;
     //Menu bar
@@ -47,9 +50,11 @@ public class Frame extends AppTheme implements IFrameApp {
     private JMenuItem menuDev;
 
     private JRadioButtonMenuItem materialLAndF;
+    private JRadioButtonMenuItem metalLAndF;
     private JRadioButtonMenuItem materialLite;
     private JRadioButtonMenuItem materialOceanic;
     private JRadioButtonMenuItem jmarDark;
+    private JRadioButtonMenuItem stackoverflowDark;
 
 
     @Inject
@@ -123,19 +128,21 @@ public class Frame extends AppTheme implements IFrameApp {
 
         menuFile.add(new JSeparator());
         menuFile.add(menuExit);
-
         materialLAndF = new JRadioButtonMenuItem(appResourceManager.getResourceString(Constant.TEXT_MENU_ITEM_MATERIAL));
-        materialLAndF.setSelected(UIManager.getLookAndFeel() instanceof MaterialLookAndFeel);
+        metalLAndF = new JRadioButtonMenuItem(appResourceManager.getResourceString(Constant.TEXT_MENU_ITEM_METAL));
         subMenuLAndF.add(materialLAndF);
+        subMenuLAndF.add(metalLAndF);
 
         materialLite = new JRadioButtonMenuItem(new MaterialLiteTheme().getName());
         materialOceanic = new JRadioButtonMenuItem(new MaterialOceanicTheme().getName());
         jmarDark = new JRadioButtonMenuItem(new JMarsDarkTheme().getName());
+        stackoverflowDark = new JRadioButtonMenuItem(new DarkStackOverflowTheme().getName());
         this.buildStyleMenu();
 
         subMenuMaterialTheme.add(materialLite);
         subMenuMaterialTheme.add(materialOceanic);
         subMenuMaterialTheme.add(jmarDark);
+        subMenuMaterialTheme.add(stackoverflowDark);
 
         menuLAndF.add(subMenuLAndF);
         menuLAndF.add(subMenuMaterialTheme);
@@ -152,14 +159,16 @@ public class Frame extends AppTheme implements IFrameApp {
     @Override
     public void initActions() throws ViewException {
         if (mediatorActions == null) {
-            throw new ViewException("The mediatorActions not eas injected");
+            throw new ViewException("The MediatorActions isn't injected");
         }
-
         menuExit.setAction(mediatorActions.getAction(Constant.EXIT_ACTION_KEY));
         menuDev.setAction(mediatorActions.getAction(Constant.VIEW_DEV_ACTION_KEY));
+        materialLAndF.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_LAF));
+        metalLAndF.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_LAF));
         materialLite.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_THEME));
         materialOceanic.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_THEME));
         jmarDark.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_THEME));
+        stackoverflowDark.addActionListener(mediatorActions.getAction(Constant.ACTION_CHANGE_THEME));
     }
 
     @Override
@@ -183,18 +192,43 @@ public class Frame extends AppTheme implements IFrameApp {
         JOptionPane.showInternalInputDialog(this, message, title, typePanel);
     }
 
-    public void buildStyleMenu(){
-        BasicLookAndFeel actualLookAndFeel = (BasicLookAndFeel) UIManager.getLookAndFeel();
+    @Override
+    public void changeThemeApp(MaterialTheme newTheme) {
+        super.changeThemeApp(newTheme);
+        buildStyleMenu();
+    }
 
-        subMenuMaterialTheme.setEnabled(actualLookAndFeel instanceof MaterialLookAndFeel);
-        if(actualLookAndFeel instanceof MaterialLookAndFeel){
-            materialLite.setSelected(super.getTheme() instanceof MaterialLiteTheme);
-            materialOceanic.setSelected(super.getTheme() instanceof MaterialOceanicTheme);
-            jmarDark.setSelected(super.getTheme() instanceof JMarsDarkTheme);
+    @Override
+    public void changeLookAndFeel(LookAndFeel lookAndFeel) {
+        super.changeLookAndFeel(lookAndFeel);
+        buildStyleMenu();
+    }
+
+    public void buildStyleMenu(){
+        materialLAndF.setSelected(UIManager.getLookAndFeel() instanceof MaterialLookAndFeel);
+        metalLAndF.setSelected(UIManager.getLookAndFeel() instanceof MetalLookAndFeel);
+
+        subMenuMaterialTheme.setEnabled(actualLaF instanceof MaterialLookAndFeel);
+        if(actualLaF instanceof MaterialLookAndFeel){
+            materialLAndF.setSelected(true);
+            metalLAndF.setSelected(false);
+
+            materialLite.setEnabled(true);
+            materialOceanic.setEnabled(true);
+            jmarDark.setEnabled(true);
+            stackoverflowDark.setEnabled(true);
+            materialLite.setSelected(theme instanceof MaterialLiteTheme);
+            materialOceanic.setSelected(theme instanceof MaterialOceanicTheme);
+            jmarDark.setSelected(theme instanceof JMarsDarkTheme);
+            stackoverflowDark.setSelected(theme instanceof DarkStackOverflowTheme);
         }else{
+            materialLAndF.setSelected(false);
+            metalLAndF.setSelected(true);
+
             materialLite.setEnabled(false);
             materialOceanic.setEnabled(false);
             jmarDark.setEnabled(false);
+            stackoverflowDark.setEnabled(false);
         }
     }
 
@@ -209,5 +243,17 @@ public class Frame extends AppTheme implements IFrameApp {
 
     public JRadioButtonMenuItem getJmarDark() {
         return jmarDark;
+    }
+
+    public JRadioButtonMenuItem getMaterialLAndF() {
+        return materialLAndF;
+    }
+
+    public JRadioButtonMenuItem getMetalLAndF() {
+        return metalLAndF;
+    }
+
+    public JRadioButtonMenuItem getStackoverflowDark() {
+        return stackoverflowDark;
     }
 }

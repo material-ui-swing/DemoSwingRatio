@@ -49,7 +49,6 @@ public class PanelPresentation extends JPanel implements IPresentationPanel, Obs
 
         super.setLayout(new GridBagLayout());
         super.add(addBackground, new GridBagConstraints());
-
         super.add(addBackground);
     }
 
@@ -73,7 +72,6 @@ public class PanelPresentation extends JPanel implements IPresentationPanel, Obs
     public JButton getAddBackground() {
         return addBackground;
     }
-
 
     public class AddImageButton extends JButton {
 

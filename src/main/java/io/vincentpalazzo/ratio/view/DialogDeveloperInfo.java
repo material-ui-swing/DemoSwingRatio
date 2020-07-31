@@ -41,15 +41,17 @@ public class DialogDeveloperInfo extends JDialog implements IAppViewComponent {
 
     @Override
     public void initView() throws ViewException {
-        dialogInit();
-        initComponent();
+        if(!this.isDisplayable()){
+            dialogInit();
+            initComponent();
 
-        positionComponetIntoLayout();
+            positionComponetIntoLayout();
 
-        initActions();
+            initActions();
 
-        setLocationRelativeTo(getOwner());
-        pack();
+            setLocationRelativeTo(getOwner());
+            pack();
+        }
         setVisible(true);
     }
 

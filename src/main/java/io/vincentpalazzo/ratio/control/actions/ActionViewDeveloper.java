@@ -8,6 +8,7 @@ import io.vincentpalazzo.ratio.view.DialogDeveloperInfo;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo

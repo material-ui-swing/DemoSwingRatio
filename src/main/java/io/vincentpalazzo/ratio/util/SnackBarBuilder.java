@@ -1,8 +1,9 @@
 package io.vincentpalazzo.ratio.util;
 
-import io.swingsnackbar.SnackBar;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
+import org.material.component.swingsnackbar.SnackBar;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;

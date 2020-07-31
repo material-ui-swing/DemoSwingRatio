@@ -1,8 +1,6 @@
 package io.vincentpalazzo.ratio.view;
 
-import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialTheme;
-
 import javax.swing.*;
 
 /**
@@ -11,6 +9,8 @@ import javax.swing.*;
 public interface IFrameApp extends IAppViewComponent{
 
     void doShowMessage(MessageLevelError levelError, String message);
+
+    void changeLookAndFeel(LookAndFeel lookAndFeel);
 
     void changeThemeApp(MaterialTheme newTheme);
 
@@ -21,4 +21,10 @@ public interface IFrameApp extends IAppViewComponent{
     JRadioButtonMenuItem getMaterialOceanic();
 
     JRadioButtonMenuItem getJmarDark();
+
+    JRadioButtonMenuItem getMaterialLAndF();
+
+    JRadioButtonMenuItem getMetalLAndF();
+
+    JRadioButtonMenuItem getStackoverflowDark();
 }

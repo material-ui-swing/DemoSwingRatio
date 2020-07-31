@@ -1,8 +1,7 @@
 package io.vincentpalazzo.ratio.control.actions;
 
 import com.google.inject.Inject;
-import io.vincentpalazzo.ratio.App;
-import io.vincentpalazzo.ratio.model.ModelMediator;
+import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.IFrameApp;
@@ -28,8 +27,9 @@ public class ActionChangeMaterialTheme extends AbstractAction implements ActionL
             frameApp.changeThemeApp(new MaterialLiteTheme());
         }else if(origin == frameApp.getMaterialOceanic()){
             frameApp.changeThemeApp(new MaterialOceanicTheme());
+        } else if (origin == frameApp.getStackoverflowDark()){
+            frameApp.changeThemeApp(new DarkStackOverflowTheme());
         }
-        frameApp.buildStyleMenu();
     }
 
     @Inject

@@ -30,11 +30,14 @@ public class AppResourceManager implements IAppResourceManager{
     @Override
     public void initResourceManager() {
         resourceBundle = ResourceBundle.getBundle(AppConfiguration.getInstance().getValueWith(Constant.RESOURCE_BUNDLE), Locale.getDefault());
-        LOGGER.debug("The number key of the resource bundle is: " + resourceBundle.keySet().size());
+        LOGGER.debug("The number keys of the resource bundle are: " + resourceBundle.keySet().size());
     }
 
     @Override
     public String getResourceString(String nameKey) {
+        if(!resourceBundle.containsKey(nameKey)){
+            throw new IllegalArgumentException("Key " + nameKey + " not present inside resourceBundle");
+        }
         return resourceBundle.getString(nameKey);
     }
 
