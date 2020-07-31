@@ -1,8 +1,8 @@
 ## How to run the demo to reproduce the bug [#144](https://github.com/vincenzopalazzo/material-ui-swing/issues/144)
 
-Download the jar from the bid directory and following the passage below:
+Download the jar from the bin directory or on github release and following the passage below:
 
-1. Run the demo the correct JDK 8 or 13 (the demo use google guice) and it can have some problem with different JDK.
+1. Run the demo the correct JDK 8 or 13.
     - `java -jar NAME?JAR.jar`
 2. Click on button "add image"
 

@@ -1,6 +1,6 @@
 # DemoSwingRatio
 
-This demo is a Swing application and I'm trying to implement the ration effect at an panel inside the application (Like Powerpoint)
+This application is a simple app to present material-ui-swing lib. In addition, the app is under developing (too slowly).
 
 You can download the jar at this [link](https://gitlab.com/palazzovincenzo/demoswingratio/-/tree/master/bin)
 
