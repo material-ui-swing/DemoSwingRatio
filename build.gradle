@@ -10,12 +10,12 @@ repositories {
     }
 }
 
-version = '0.1-jdk-8'
+version = '0.1'
 
 dependencies {
 
     implementation 'io.github.material-ui-swing:SwingSnackBar:0.0.1-rc6'
-    implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1-rc4'
+    implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1'
     implementation 'io.github.material-ui-swing:DarkStackOverflowTheme:0.0.1-rc2'
 
     implementation 'ch.qos.logback:logback-classic:1.2.3'
@@ -24,7 +24,8 @@ dependencies {
     implementation group: 'com.google.inject', name: 'guice', version: '4.2.3'
     implementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'io.github.material-ui-swing:DarkStackOverflowTheme:0.0.1-rc2'
+    implementation group: 'com.bulenkov', name: 'darcula', version: '2018.2'
+
 
     testImplementation 'org.mockito:mockito-core:2.28.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'

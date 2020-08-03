@@ -1,19 +1,39 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package io.vincentpalazzo.ratio.view;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.vincentpalazzo.ratio.App;
 import io.vincentpalazzo.ratio.control.MediatorActions;
 import io.vincentpalazzo.ratio.model.ModelMediator;
 import io.vincentpalazzo.ratio.model.RatioValue;
-import io.vincentpalazzo.ratio.util.AppResourceManager;
 import io.vincentpalazzo.ratio.util.Constant;
 import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.view.eception.ViewException;
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.icons.MaterialIconFont;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,7 +165,7 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         public MaterialIconButton() {
             setUI(new IconButtonUI());
             setIcon(MaterialImageFactory.getInstance().getImage(
-                    GoogleMaterialDesignIcons.PHOTO_CAMERA,
+                    MaterialIconFont.PHOTO_CAMERA,
                     getForeground()
             ));
         }
@@ -154,7 +174,7 @@ public class PanelSetting extends JPanel implements IPanelSetting {
         public void updateUI() {
             setUI(new IconButtonUI());
             setIcon(MaterialImageFactory.getInstance().getImage(
-                    GoogleMaterialDesignIcons.PHOTO_CAMERA,
+                    MaterialIconFont.PHOTO_CAMERA,
                     getForeground()
             ));
         }

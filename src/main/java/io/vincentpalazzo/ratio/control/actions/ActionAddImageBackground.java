@@ -1,3 +1,26 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package io.vincentpalazzo.ratio.control.actions;
 
 import com.google.inject.Inject;
@@ -7,9 +30,9 @@ import io.vincentpalazzo.ratio.util.IAppResourceManager;
 import io.vincentpalazzo.ratio.util.SnackBarBuilder;
 import io.vincentpalazzo.ratio.view.*;
 import io.vincentpalazzo.ratio.view.Frame;
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.icons.MaterialIconFont;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +53,7 @@ public class ActionAddImageBackground extends AbstractAction {
     public ActionAddImageBackground() {
         super.putValue(Action.LARGE_ICON_KEY,
                 MaterialImageFactory.getInstance().getImage(
-                        GoogleMaterialDesignIcons.ADD_A_PHOTO,
+                        MaterialIconFont.ADD_A_PHOTO,
                         MaterialColors.COSMO_BLACK)
         );
     }
